@@ -1,0 +1,6 @@
+# Django itself
+django>=4.0.0
+
+# InterSystems IRIS driver for Django, and DB-API driver from InterSystems
+django-iris==0.1.13
+https://raw.githubusercontent.com/intersystems-community/iris-driver-distribution/main/DB-API/intersystems_irispython-3.2.0-py3-none-any.whl
