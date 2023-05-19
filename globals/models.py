@@ -8,5 +8,5 @@ class Global(models.Model):
     size = models.DecimalField()
 
     def __str__(self):
-        return name
+        return self.name
 
