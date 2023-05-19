@@ -1,0 +1,5 @@
+# files added by *migrate* and *runserver*
+irisCrud/__pycache__
+
+books/__pycache__
+books/migrations
