@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class iGlobal(models.Model):
-    database = models.CharField(max_length=40)
-    name = models.CharField(max_length=40)
+    database = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     allocatedsize = models.FloatField()
     realsize = models.FloatField()
 
