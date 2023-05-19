@@ -4,8 +4,8 @@ from django.db import models
 class iGlobal(models.Model):
     database = models.CharField(max_length=40)
     name = models.CharField(max_length=40)
-    allocatedsize = models.DecimalField()
-    realsize = models.DecimalField()
+    allocatedsize = models.FloatField()
+    realsize = models.FloatField()
 
     def __str__(self):
         return self.name
