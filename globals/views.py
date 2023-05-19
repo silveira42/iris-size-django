@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Global
+from .models import iGlobal
 
 # Create your views here.
 def home(request):
-    return render(request, "index.html")
+    iglobals = iGlobal.objects.all()
+    return render(request, "index.html", {"iglobals": iglobals})
