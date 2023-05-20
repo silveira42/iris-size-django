@@ -14,8 +14,9 @@ irispy = iris.createIRIS(connection)
 
 def getGlobalSize(databaseDirectory: str, globalName: str):
     try:
-        globalSize = iris.IRISReference(0)
-        status = irispy.classMethodObject("%GlobalEdit", "GetGlobalSizeBySubscript", databaseDirectory, globalName, globalName, globalSize)
+        globalUsed = iris.IRISReference(0)
+        globalAllocated = iris.IRISReference(0)
+        status = irispy.classMethodObject("%GlobalEdit", "GetGlobalSize", databaseDirectory, globalName, globalAllocated, globalUsed, 0)
         if (status != 1):
             #TODO: get error text
             statusText = irispy.classMethodString("%SYSTEM.Status", "GetErrorText", status)
@@ -24,22 +25,22 @@ def getGlobalSize(databaseDirectory: str, globalName: str):
     except Exception as error:
         return str(error)
 
-    return globalSize.getValue()
+    return (globalUsed.getValue(), globalAllocated.getValue())
 
 
-def getGlobalAllocatedSize(databaseDirectory: str, globalName: str):
-    try:
-        allocatedSize = iris.IRISReference(0)
-        status = irispy.classMethodObject("%Library.GlobalEdit", "GetGlobalSize", databaseDirectory, globalName, globalName, allocatedSize)
-        if (status != 1):
-            #TODO: get error text
-            statusText = irispy.classMethodString("%SYSTEM.Status", "GetErrorText", status)
-            raise Exception(statusText)
+# def getGlobalAllocatedSize(databaseDirectory: str, globalName: str):
+#     try:
+#         allocatedSize = iris.IRISReference(0)
+#         status = irispy.classMethodObject("%Library.GlobalEdit", "GetGlobalSize", databaseDirectory, globalName, globalName, allocatedSize)
+#         if (status != 1):
+#             #TODO: get error text
+#             statusText = irispy.classMethodString("%SYSTEM.Status", "GetErrorText", status)
+#             raise Exception(statusText)
 
-    except Exception as error:
-        return str(error)
+#     except Exception as error:
+#         return str(error)
 
-    return allocatedSize.getValue()
+#     return allocatedSize.getValue()
 
 
 def getGlobalsList(databaseDirectory: str):

@@ -8,13 +8,12 @@ def home(request):
     return render(request, "index.html", {"iglobals": iglobals})
 
 def update(request):
-    iGlobal.objects.all().delete()
+    iGlobal.objects.all().delete() #TODO: CHANGE THIS TO A PROPER UPDATE
     databaseList = getAllDatabaseDirectories()
     for database in databaseList:
         globalList = getGlobalsList(database)
         for glob in globalList:
-            globSize = getGlobalSize(database, glob)
-            allocatedSize = getGlobalAllocatedSize(database, glob)
-            iGlobal.objects.create(database=database, name=glob, realsize=globSize, allocatedsize=allocatedSize)
+            used, allocated = getGlobalSize(database, glob)
+            iGlobal.objects.create(database=database, name=glob, realsize=used, allocatedsize=allocated)
 
     return redirect(home)
