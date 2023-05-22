@@ -9,13 +9,23 @@
     <body>
         <h1>Globals</h1>
         <a href="{% url 'update' %}">update</a>
-        <h3>ID  -  DATABASE          /       GLOBAL       - Size / Allocated</h3>
-        <ul>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Database</th>
+                <th>Global</th>
+                <th>Size</th>
+                <th>Allocated</th>
+            </tr>
             {% for iglobal in iglobals %}
-            <li>
-                {{ iglobal.id }} - {{ iglobal.database }} / {{ iglobal.name }} - {{ iglobal.realsize }} / {{ iglobal.allocatedsize }}
-            </li>
+            <tr>
+                <td>{{ iglobal.id }}</td>
+                <td>{{ iglobal.database }}</td>
+                <td>{{ iglobal.name }}</td>
+                <td>{{ iglobal.realsize }}</td>
+                <td>{{ iglobal.allocatedsize }}</td>
+            </tr>
             {% endfor %}
-        </ul>
+        </table>
     </body>
 </html>

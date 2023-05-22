@@ -5,6 +5,7 @@ from .api.methods import *
 # Create your views here.
 def home(request):
     iglobals = iGlobal.objects.all()
+    print(iglobals)
     return render(request, "index.html", {"iglobals": iglobals})
 
 def update(request):
