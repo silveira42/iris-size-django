@@ -9,9 +9,13 @@
     <body>
         <h1>Globals</h1>
         <a href="{% url 'update' %}">update</a>
+
+        <form action="{% url 'home' %}" method="GET">
+            {% csrf_token %}
+            <input type="text" name="database" value="{{database}}" placeholder="Database"/>
+        </form>
         <table>
             <tr>
-                <th>ID</th>
                 <th>Database</th>
                 <th>Global</th>
                 <th>Size</th>
@@ -19,7 +23,6 @@
             </tr>
             {% for iglobal in iglobals %}
             <tr>
-                <td>{{ iglobal.id }}</td>
                 <td>{{ iglobal.database }}</td>
                 <td>{{ iglobal.name }}</td>
                 <td>{{ iglobal.realsize }}</td>
@@ -27,5 +30,6 @@
             </tr>
             {% endfor %}
         </table>
+        <p>showing results for {{iglobals.count}} globals</p>
     </body>
 </html>
