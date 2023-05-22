@@ -12,7 +12,10 @@
 
         <form action="{% url 'home' %}" method="GET">
             {% csrf_token %}
-            <input type="text" name="database" value="{{database}}" placeholder="Database"/>
+            <input type="text" name="fdatabase" value="{{fdatabase}}" placeholder="Database"/>
+            <input type="text" name="fglobal" value="{{fglobal}}" placeholder="Globals"/>
+            <input type="number" name="fsize" value="{{fsize}}" placeholder="Size"  step="0.001"/>
+            <button type="submit">Filter</button>
         </form>
         <table>
             <tr>
@@ -20,6 +23,9 @@
                 <th>Global</th>
                 <th>Size</th>
                 <th>Allocated</th>
+            </tr>
+            <tr>
+
             </tr>
             {% for iglobal in iglobals %}
             <tr>
