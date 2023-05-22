@@ -8,15 +8,15 @@
 </head>
     <body>
         <h1>Globals</h1>
-        <a href="{% url 'update' %}">update</a>
-
-        <form action="{% url 'home' %}" method="GET">
+        <a href="{% url 'update' %}">Update</a>
+        <form method="GET">
             {% csrf_token %}
             <input type="text" name="fdatabase" value="{{fdatabase}}" placeholder="Database"/>
             <input type="text" name="fglobal" value="{{fglobal}}" placeholder="Globals"/>
             <input type="number" name="fsize" value="{{fsize}}" placeholder="Size"  step="0.001"/>
             <input type="number" name="fallocated" value="{{fallocated}}" placeholder="Allocated"  step="0.001"/>
-            <button type="submit">Filter</button>
+            <button type="submit" formaction="{% url 'home' %}">Filter</button>
+            <button type="submit" formaction="{% url 'export' %}">Export</button>
         </form>
         <table>
             <tr>
