@@ -2,17 +2,18 @@ from django.shortcuts import render, redirect
 from .models import iGlobal
 from .api.methods import *
 
-# Create your views here.
-def home(request):
-    iglobals = iGlobal.objects.all()
 
+def handle_filter(request):
+    iglobals = iGlobal.objects.all()
     # handle filters
-    fdatabase, fglobal, fsize = request.GET.get("fdatabase"), request.GET.get("fglobal"), request.GET.get("fsize")
+    fdatabase, fglobal, fsize, fallocated = request.GET.get("fdatabase"), request.GET.get("fglobal"), request.GET.get("fsize"), request.GET.get("fallocated")
 
     if not fdatabase: fdatabase=""
     if not fglobal: fglobal=""
+
     if fdatabase or fglobal:
         iglobals = iglobals.filter(database__icontains=fdatabase).filter(name__icontains=fglobal)
+
     if type(fsize) != type(None):
         fsize = float(fsize)
         if fsize>=0:
@@ -20,7 +21,41 @@ def home(request):
         else:
             iglobals = iglobals.filter(realsize__lte=-fsize)
 
-    return render(request, "index.html", {"iglobals": iglobals, "fdatabase": fdatabase, "fglobal":fglobal, "fsize": fsize})
+    if type(fallocated) != type(None):
+        fallocated = float(fallocated)
+        if fallocated>=0:
+            iglobals = iglobals.filter(realsize__gte=fallocated)
+        else:
+            iglobals = iglobals.filter(realsize__lte=-fallocated)
+
+    return iglobals, fdatabase, fglobal, fsize, fallocated
+
+# Create your views here.
+def home(request):
+    iglobals = iGlobal.objects.all()
+    fdatabase, fglobal, fsize, fallocated = request.GET.get("fdatabase"), request.GET.get("fglobal"), request.GET.get("fsize"), request.GET.get("fallocated")
+
+    if not fdatabase: fdatabase=""
+    if not fglobal: fglobal=""
+
+    if fdatabase or fglobal:
+        iglobals = iglobals.filter(database__icontains=fdatabase).filter(name__icontains=fglobal)
+
+    if fsize:
+        fsize = float(fsize)
+        if fsize>=0:
+            iglobals = iglobals.filter(realsize__gte=fsize)
+        else:
+            iglobals = iglobals.filter(realsize__lte=-fsize)
+
+    if fallocated:
+        fallocated = float(fallocated)
+        if fallocated>=0:
+            iglobals = iglobals.filter(allocatedsize__gte=fallocated)
+        else:
+            iglobals = iglobals.filter(allocatedsize__lte=-fallocated)
+    #iglobals, fdatabase, fglobal, fsize, fallocated = handle_filter(request)
+    return render(request, "index.html", {"iglobals": iglobals, "fdatabase": fdatabase, "fglobal":fglobal, "fsize": fsize, "fallocated": fallocated})
 
 
 def update(request):
