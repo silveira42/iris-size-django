@@ -57,22 +57,23 @@ def update(request):
     return redirect(home)
 
 import os
-# def export(request):
-#     iglobals = handle_filters(request)[0]
-#     cd = os.getcwd()
-#     with open(cd+"\\test.csv", "w") as file:
-#         for iglobal in iglobals:
-#             row = iglobal.database+", "+iglobal.name+", "+str(iglobal.realsize)+", "+str(iglobal.allocatedsize)+"\n"
-#             file.write(row)
-
-#     return redirect(home)
-
-
 def export(request):
     iglobals = handle_filters(request)[0]
     cd = os.getcwd()
-    with open(cd+"\\test.xml", "w") as file:
-        iglobals = serializers.serialize('xml', iglobals)
-        file.write(iglobals)
+    xLanguage = request.GET.get("exportLanguage")
+
+    if xLanguage == "CSV":
+        with open(cd+"\\test.csv", "w") as file:
+            for iglobal in iglobals:
+                row = iglobal.database+", "+iglobal.name+", "+str(iglobal.realsize)+", "+str(iglobal.allocatedsize)+"\n"
+                file.write(row)
+    elif xLanguage == "XML":
+        with open(cd+"\\test.xml", "w") as file:
+            iglobals = serializers.serialize('xml', iglobals)
+            file.write(iglobals)
+    elif xLanguage == "JSON":
+        with open(cd+"\\test.json", "w") as file:
+            iglobals = serializers.serialize('json', iglobals)
+            file.write(iglobals)
 
     return redirect(home)
