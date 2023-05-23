@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.core import serializers
 from .models import iGlobal
 from .api.methods import *
 
@@ -56,12 +57,22 @@ def update(request):
     return redirect(home)
 
 import os
+# def export(request):
+#     iglobals = handle_filters(request)[0]
+#     cd = os.getcwd()
+#     with open(cd+"\\test.csv", "w") as file:
+#         for iglobal in iglobals:
+#             row = iglobal.database+", "+iglobal.name+", "+str(iglobal.realsize)+", "+str(iglobal.allocatedsize)+"\n"
+#             file.write(row)
+
+#     return redirect(home)
+
+
 def export(request):
     iglobals = handle_filters(request)[0]
     cd = os.getcwd()
-    with open(cd+"\\test.csv", "w") as file:
-        for iglobal in iglobals:
-            row = iglobal.database+", "+iglobal.name+", "+str(iglobal.realsize)+", "+str(iglobal.allocatedsize)+"\n"
-            file.write(row)
+    with open(cd+"\\test.xml", "w") as file:
+        iglobals = serializers.serialize('xml', iglobals)
+        file.write(iglobals)
 
     return redirect(home)

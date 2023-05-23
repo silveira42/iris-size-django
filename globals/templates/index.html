@@ -15,6 +15,11 @@
             <input type="text" name="fglobal" value="{{fglobal}}" placeholder="Globals"/>
             <input type="number" name="fsize" value="{{fsize}}" placeholder="Size"  step="0.001"/>
             <input type="number" name="fallocated" value="{{fallocated}}" placeholder="Allocated"  step="0.001"/>
+
+            <input type="radio" name="exportLanguage" value="CSV"/>
+            <input type="radio" name="exportLanguage" value="XML"/>
+            <input type="radio" name="exportLanguage" value="JSON"/>
+            
             <button type="submit" formaction="{% url 'home' %}">Filter</button>
             <button type="submit" formaction="{% url 'export' %}">Export</button>
         </form>
