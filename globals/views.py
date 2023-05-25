@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.core import serializers
 from .models import iGlobal
 from .api.methods import *
@@ -52,8 +52,10 @@ def handle_filters(request):
 # Create your views here.
 def home(request):
     iglobals, fdatabase, fglobal, fsize, fallocated = handle_filters(request)
+    sumSize = iglobals.aggregate(Sum("realsize"))
+    sumAllocated = iglobals.aggregate(Sum("allocatedsize"))
 
-    return render(request, "index.html", {"iglobals": iglobals, "fdatabase": fdatabase, "fglobal":fglobal, "fsize": fsize, "fallocated": fallocated})
+    return render(request, "index.html", {"iglobals": iglobals, "fdatabase": fdatabase, "fglobal":fglobal, "fsize": fsize, "fallocated": fallocated, "sumSize": sumSize, "sumAllocated": sumAllocated})
 
 
 def update(request):
