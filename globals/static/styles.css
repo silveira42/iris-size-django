@@ -1,0 +1,79 @@
+*{
+    padding:0;
+    margin: 0;
+}
+body{
+    background-color: #ff9015;
+
+    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 2000 1400%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%222000%22 height=%221400%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%23FF9015%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%23870064%22 stroke-width=%222.8%22 mask=%22url(%23b)%22%3E%3Cpath fill=%22%23870064ba%22 d=%22M1750 0h125v125h-125z%22%2F%3E%3Cpath fill=%22none%22 d=%22M750 125h125v125H750zM1125 125h125v125h-125zM1750 250h125v125h-125zM125 375h125v125H125zM500 375h125v125H500zM1625 375h125v125h-125zM375 500h125v125H375z%22%2F%3E%3Cpath fill=%22%23870064c9%22 d=%22M750 500h125v125H750z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1625 500h125v125h-125zM250 625h125v125H250zM1250 625h125v125h-125z%22%2F%3E%3Cpath fill=%22%23870064aa%22 d=%22M1750 625h125v125h-125z%22%2F%3E%3Cpath fill=%22none%22 d=%22M750 750h125v125H750zM1750 875h125v125h-125zM500 1000h125v125H500zM1625 1000h125v125h-125z%22%2F%3E%3Cpath fill=%22%238700644a%22 d=%22M1750 1000h125v125h-125z%22%2F%3E%3Cpath fill=%22none%22 d=%22M375 1125h125v125H375z%22%2F%3E%3Cpath fill=%22%2387006465%22 d=%22M875 1125h125v125H875z%22%2F%3E%3Cpath fill=%22%23870064a9%22 d=%22M1125 1125h125v125h-125z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1875 1125h125v125h-125z%22%2F%3E%3Cpath fill=%22%23870064d2%22 d=%22M0 1250h125v125H0z%22%2F%3E%3Cpath fill=%22none%22 d=%22M625 1250h125v125H625zM750 1250h125v125H750zM1250 1250h125v125h-125zM1500 1250h125v125h-125z%22%2F%3E%3Cpath fill=%22%2387006473%22 d=%22M0 1375h125v125H0z%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%2250%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3Cstop offset=%221%22 stop-color=%22%23fff%22 stop-opacity=%22.5%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E");
+
+
+
+    font-family: 'Champagne_Limousine', 'Montserrat', 'Calibri';
+    margin-top: 3.5rem;
+}
+
+header{
+    color: #FF9015;
+    text-shadow: .1rem .1rem 1rem #FF901520;
+    background-color: #333333;
+    height: 1.5rem;
+    box-shadow: -0.3rem .1rem.5rem #000000;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+}
+
+h1{
+    display:inline-block;
+}
+
+a{
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    color:inherit;
+    margin-right: 3rem;
+    padding: 1rem;
+}
+
+a:hover{
+    border-bottom: .2rem solid #CB007b;
+    transition: all 300ms ease-in-out;
+}
+
+.form{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+table{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+tr:nth-child(even) {
+    background-color: #33333320;
+    color: #000;
+  }
+
+.content{
+    box-shadow: 0 .1rem 1rem #000000;
+    max-width:60rem;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #C8C8C8;
+    color: #333333;
+}
+
+.order input{
+    justify-content: space-evenly;
+}

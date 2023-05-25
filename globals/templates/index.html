@@ -4,46 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/CSS" href="{% static 'styles.css' %}" media="screen">
+    <title>Globals size</title>
 </head>
     <body>
-        <h1>Globals</h1>
-        <a href="{% url 'update' %}">Update</a>
-        <form method="GET">
-            {% csrf_token %}
-            <input type="text" name="fdatabase" value="{{fdatabase}}" placeholder="Database"/>
-            <input type="text" name="fglobal" value="{{fglobal}}" placeholder="Globals"/>
-            <input type="number" name="fsize" value="{{fsize}}" placeholder="Size"  step="0.001"/>
-            <input type="number" name="fallocated" value="{{fallocated}}" placeholder="Allocated"  step="0.001"/>
+        <header>
+            <h1>Globals size</h1>
+            <a href="{% url 'update' %}">Update</a>
+        </header>
 
-            <button type="submit" formaction="{% url 'home' %}">Filter</button>
+        <section class="content">
+            <section class="form">
+                <form method="GET">
+                    {% csrf_token %}
+                    <input type="text" name="fdatabase" value="{{fdatabase}}" placeholder="Database"/>
+                    <input type="text" name="fglobal" value="{{fglobal}}" placeholder="Globals"/>
+                    <input type="number" name="fsize" value="{{fsize}}" placeholder="Size"  step="0.001"/>
+                    <input type="number" name="fallocated" value="{{fallocated}}" placeholder="Allocated"  step="0.001"/>
 
-            <br>
-            <input type="radio" name="exportLanguage" value="CSV"/> <label for="CSV">CSV</label>
-            <input type="radio" name="exportLanguage" value="XML"/> <label for="XML">XML</label>
-            <input type="radio" name="exportLanguage" value="JSON"/> <label for="JSON">JSON</label>
+                    <button type="submit" formaction="{% url 'home' %}">Filter</button>
 
-            <button type="submit" formaction="{% url 'export' %}">Export</button>
-        </form>
-        <table>
-            <tr>
-                <th>Database</th>
-                <th>Global</th>
-                <th>Size</th>
-                <th>Allocated</th>
-            </tr>
-            <tr>
+                    <br>
+                    <div class="filter">
+                        <input type="radio" name="exportLanguage" value="{{CSV}}" id="CSV"/>
+                        <label onclick="getElementById('CSV').checked = true">CSV</label>
+                        <input type="radio" name="exportLanguage" value="{{XML}}" id="XML"/>
+                        <label onclick="getElementById('XML').checked = true">XML</label>
+                        <input type="radio" name="exportLanguage" value="{{JSON}}" id="JSON"/>
+                        <label onclick="getElementById('JSON').checked = true">JSON</label>
 
-            </tr>
-            {% for iglobal in iglobals %}
-            <tr>
-                <td>{{ iglobal.database }}</td>
-                <td>{{ iglobal.name }}</td>
-                <td>{{ iglobal.realsize }}</td>
-                <td>{{ iglobal.allocatedsize }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <p>showing results for {{iglobals.count}} globals</p>
+                        <button type="submit" formaction="{% url 'export' %}">Export</button>
+                    </div>
+                    <br>
+                    <div class="order">
+                        <input type="radio" name="orderBy" value="{{Database}}" id="Database"/>
+                        <label onclick="getElementById('Database').checked = true">Database</label>
+                        <input type="radio" name="orderBy" value="{{Global}}" id="Global"/>
+                        <label onclick="getElementById('Global').checked = true">Global</label>
+                        <input type="radio" name="orderBy" value="{{Size}}" id="Size"/>
+                        <label onclick="getElementById('Size').checked = true">Size</label>
+                        <input type="radio" name="orderBy" value="{{Allocated}}" id="Allocated"/>
+                        <label onclick="getElementById('Allocated').checked = true">Allocated</label>
+                    </div>
+                </form>
+            </section>
+            <section class="table">
+                <table>
+                    {% for iglobal in iglobals %}
+                    <tr>
+                        <td>{{ iglobal.database }}</td>
+                        <td>{{ iglobal.name }}</td>
+                        <td>{{ iglobal.realsize }}</td>
+                        <td>{{ iglobal.allocatedsize }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <p>showing results for {{iglobals.count}} globals</p>
+            </section>
+        </section>
     </body>
 </html>

@@ -35,11 +35,24 @@ def handle_filters(request):
 
     iglobals = iglobals.filter(q1, q2, q3, q4)
 
+    # add ordering
+    orderBy = request.GET.get("orderBy")
+    if orderBy == "Database":
+        iglobals = iglobals.order_by("database")
+    elif orderBy == "Global":
+        iglobals = iglobals.order_by("name")
+    elif orderBy == "Size":
+        iglobals = iglobals.order_by("realsize")
+    elif orderBy == "Allocated":
+        iglobals = iglobals.order_by("allocatedsize")
+
+
     return iglobals, fdatabase, fglobal, fsize, fallocated
 
 # Create your views here.
 def home(request):
     iglobals, fdatabase, fglobal, fsize, fallocated = handle_filters(request)
+
     return render(request, "index.html", {"iglobals": iglobals, "fdatabase": fdatabase, "fglobal":fglobal, "fsize": fsize, "fallocated": fallocated})
 
 
