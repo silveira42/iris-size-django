@@ -1,15 +1,15 @@
 # TODO: comment functions
 
 # iris import to handle iris connections
-import iris
+import intersystems_iris as iris
+from django.db import connection as djangoconnection
+
 
 # connection by iris
-# TODO: make it changeable by the client side
-connection_string = 'localhost:1972/%SYS'
-username = '_system'
-password = 'SYS'
-connection = iris.connect(connection_string, username, password)
-irispy = iris.createIRIS(connection)
+conn_params = djangoconnection.get_connection_params()
+conn_params["namespace"] = "%SYS"
+connection = iris.connect(**conn_params)
+irisPy = iris.createIRIS(connection)
 
 
 def getGlobalSize(databaseDirectory: str, globalName: str):
@@ -26,22 +26,6 @@ def getGlobalSize(databaseDirectory: str, globalName: str):
         return str(error)
 
     return (globalUsed.getValue(), globalAllocated.getValue())
-
-
-# def getGlobalAllocatedSize(databaseDirectory: str, globalName: str):
-#     try:
-#         allocatedSize = iris.IRISReference(0)
-#         status = irispy.classMethodObject("%Library.GlobalEdit", "GetGlobalSize", databaseDirectory, globalName, globalName, allocatedSize)
-#         if (status != 1):
-#             #TODO: get error text
-#             statusText = irispy.classMethodString("%SYSTEM.Status", "GetErrorText", status)
-#             raise Exception(statusText)
-
-#     except Exception as error:
-#         return str(error)
-
-#     return allocatedSize.getValue()
-
 
 def getGlobalsList(databaseDirectory: str):
     try:
@@ -65,19 +49,11 @@ def getGlobalsList(databaseDirectory: str):
 
 def getAllDatabaseDirectories():
     try:
-        # TODO: verify namespace
-        statement = irispy.classMethodObject("%SQL.Statement", "%New")
-        status = statement.invoke("%Prepare", "SELECT DISTINCT Directory FROM Config.Databases WHERE SectionHeader = 'Databases'")
-
-        if (status != 1):
-            statusText = irispy.classMethodString("%SYSTEM.Status", "GetErrorText", status)
-            raise Exception(statusText)
-
-        result = statement.invoke("%Execute")
-
+        # check the connection made in irisPy, and if it is set to %SYS namespace
         databaseDirectoriesList = []
-        while (result.invoke("%Next")!=0):
-            databaseDirectoriesList.append(result.invoke("%Get", "Directory"))
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT DISTINCT %EXACT(Directory) FROM Config.Databases WHERE SectionHeader = ?", ["Databases",],)
+            databaseDirectoriesList = [row[0] for row in cursor]
 
     except Exception as error:
         return str(error)
