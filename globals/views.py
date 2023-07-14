@@ -9,31 +9,20 @@ def handle_filters(request):
     iglobals = iGlobal.objects.all()
     fdatabase, fglobal, fsize, fallocated = request.GET.get("fdatabase"), request.GET.get("fglobal"), request.GET.get("fsize"), request.GET.get("fallocated")
 
-    if not fdatabase: fdatabase=""
-    if not fglobal: fglobal=""
-
-    q1 = Q(database__icontains=fdatabase)
-    q2 = Q(name__icontains=fglobal)
-
+   if fdatabase:
+        iglobals = iglobals.filter(Q(database__contains=fdatabase))
+    if fglobal:
+        iglobals = iglobals.filter(Q(name__contains=fglobal))
     if fsize:
-        fsize = float(fsize)
-        if fsize>=0:
-            q3 = Q(realsize__gte=fsize)
+        if fize >=0:
+            iglobals = iglobals.filter(Q(realsize__gte=fsize))
         else:
-            q3 = Q(realsize__lte=-fsize)
-    else:
-        q3 = Q(realsize__gte=0)
-
+            iglobals = iglobals.filter(Q(realsize__lte=fsize))
     if fallocated:
-        fallocated = float(fallocated)
-        if fallocated>=0:
-            q4 = Q(allocatedsize__gte=fallocated)
+        if fallocated >=0:
+            iglobals = iglobals.filter(Q(allocatedsize__gte=fallocated))
         else:
-            q4 = Q(allocatedsize__lte=-fallocated)
-    else:
-        q4 = Q(allocatedsize__gte=0)
-
-    iglobals = iglobals.filter(q1, q2, q3, q4)
+            iglobals = iglobals.filter(Q(allocatedsize__lte=fallocated))
 
     # add ordering
     orderBy = request.GET.get("orderBy")
