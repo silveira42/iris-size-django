@@ -91,3 +91,22 @@ tr:nth-child(even) {
 .order spam{
     font-weight: bold;
 }
+
+
+
+th:hover {
+    cursor: pointer;
+}
+
+.ascending::after {
+    content: "\25be";
+}
+
+.descending::after {
+    content: "\25b4";
+}
+
+.ascending, .descending {
+    background-color: #ffffff30;
+    box-shadow: .1px .1px  10px #aaa;
+}
