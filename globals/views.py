@@ -9,12 +9,12 @@ def handle_filters(request):
     iglobals = iGlobal.objects.all()
     fdatabase, fglobal, fsize, fallocated = request.GET.get("fdatabase"), request.GET.get("fglobal"), request.GET.get("fsize"), request.GET.get("fallocated")
 
-   if fdatabase:
+    if fdatabase:
         iglobals = iglobals.filter(Q(database__contains=fdatabase))
     if fglobal:
         iglobals = iglobals.filter(Q(name__contains=fglobal))
     if fsize:
-        if fize >=0:
+        if fsize >=0:
             iglobals = iglobals.filter(Q(realsize__gte=fsize))
         else:
             iglobals = iglobals.filter(Q(realsize__lte=fsize))
