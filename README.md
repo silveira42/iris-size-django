@@ -1,7 +1,11 @@
 # iris-size-django
-A portal for visualizing and keeping track of memory usage of an InterSystems IRIS instance.
+A portal for visualizing and keeping track of memory usage of an InterSystems IRIS instance. It shows a table with a database path, global, allocated size and size in use for each global, and aggregation sums at the end.
 
-## Usage
+Django Framework was chosen to easily migrate and exchange data from the instance to a web template.
+
+Some features will have better error handling in the future.
+
+## Instalation
 1. Clone this repository
    ```
    git clone ...
@@ -45,6 +49,11 @@ Changing it back to SQLUser will correct the behavior in most cases, but I'm wor
 6. Have fun!
 
    ![image](https://github.com/heloisatambara/iris-size-django/assets/81993336/57cfba5f-dbbd-4590-8c87-a1a47b285547)
+
+## Usage
+With the link http://127.0.0.1:8000/ open on your preferred browser, add as many filters as you want and press Filter to activate them, choose from CSV, XML, or JSON, and press Export to get a file containing all information on the current table on the directory where you cloned the repository, and press any of the headers to order.
+
+If you want to track the memory usage of a particular table, you can check which globals it uses on its storage and add their names on the filters.
 
 # Additional information
 If you have the default configuration, you will have a table called SQLUser.globals_iglobal on the selected namespace, if you wish to perform any treatment with InterSystems' products. If you want to save the data on a different instance, change the connection on /iris-size-django/globals/api/methods.py to the instance you wish to analyze, and in step 3, point to the storage.
