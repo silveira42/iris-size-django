@@ -47,9 +47,10 @@ Changing it back to SQLUser will correct the behavior in most cases, but I'm wor
    ![image](https://github.com/heloisatambara/iris-size-django/assets/81993336/57cfba5f-dbbd-4590-8c87-a1a47b285547)
 
 # Additional information
-If you have the default configuration, you will have a table called SQLUser.globals_iglobal on the selected namespace, if you wish to perform any treatment with InterSystems' products.
+If you have the default configuration, you will have a table called SQLUser.globals_iglobal on the selected namespace, if you wish to perform any treatment with InterSystems' products. If you want to save the data on a different instance, change the connection on /iris-size-django/globals/api/methods.py to the instance you wish to analyze, and in step 3, point to the storage.
 
 Also, you can check out step-by-step how this was developed on  the [A portal to manage memory made with Django](https://community.intersystems.com/post/portal-manage-memory-made-django-part-1) series of articles.
+
 
 Feel free to contact me for any doubts!
 
