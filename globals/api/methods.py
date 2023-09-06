@@ -9,7 +9,7 @@ from django.db import connection as djangoconnection
 conn_params = djangoconnection.get_connection_params()
 conn_params["namespace"] = "%SYS"
 connection = iris.connect(**conn_params)
-irisPy = iris.createIRIS(connection)
+irispy = iris.createIRIS(connection)
 
 
 def getGlobalSize(databaseDirectory: str, globalName: str):
