@@ -38,17 +38,7 @@
                         <button type="submit" formaction="{% url 'export' %}">Export</button>
                     </div>
                     <br>
-                    <div class="order">
-                        <spam>Order by:</spam>
-                        <input type="radio" name="orderBy" value="Database" id="Database"/>
-                        <label onclick="getElementById('Database').checked = true">Database</label>
-                        <input type="radio" name="orderBy" value="Global" id="Global"/>
-                        <label onclick="getElementById('Global').checked = true">Name</label>
-                        <input type="radio" name="orderBy" value="Size" id="Size"/>
-                        <label onclick="getElementById('Size').checked = true">Size</label>
-                        <input type="radio" name="orderBy" value="Allocated" id="Allocated"/>
-                        <label onclick="getElementById('Allocated').checked = true">Allocated</label>
-                    </div>
+
                 </form>
             </section>
             <section class="table">
@@ -77,5 +67,7 @@
                 <script src="{% static 'index.js' %}"></script>
             </section>
         </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{% static 'index.js'%}"></script>
     </body>
 </html>
