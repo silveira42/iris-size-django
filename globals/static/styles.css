@@ -55,11 +55,12 @@ a:hover{
     justify-content: center;
 }
 
-
-table{
+ 
+.table{
     display: flex;
     justify-content: center;
-    margin: 0;
+    padding: 35px;
+    flex-direction: column;
 }
 tr:nth-child(even) {
     background-color: #33333320;

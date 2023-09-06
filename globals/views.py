@@ -11,8 +11,12 @@ def handle_filters(request):
 
     if fdatabase:
         iglobals = iglobals.filter(Q(database__contains=fdatabase))
+    else:
+        fdatabase=""
     if fglobal:
         iglobals = iglobals.filter(Q(name__contains=fglobal))
+    else:
+        fglobal=""
     if fsize:
         if fsize >=0:
             iglobals = iglobals.filter(Q(realsize__gte=fsize))

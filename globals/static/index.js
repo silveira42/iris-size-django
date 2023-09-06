@@ -27,9 +27,9 @@ function sortTable(table, columnIndex, ascending = true) {
     
 }
         
+console.log('hello world');
 
-
-document.querySelectorAll(".globalsTable th").forEach(header => {
+document.querySelectorAll("table th").forEach(header => {
     header.addEventListener("click", () => {
         const table = header.parentElement.parentElement.parentElement;
         const columnIndex = Array.prototype.indexOf.call(header.parentElement.children, header);

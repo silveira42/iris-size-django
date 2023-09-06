@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache" />
     {% load static %}
     <link rel="stylesheet" type="text/CSS" href="{% static 'styles.css' %}" media="screen">
     <title>Globals size</title>
@@ -43,28 +44,30 @@
             </section>
             <section class="table">
                 <table>
-                    <tr>
-                        <th>Database</th>
-                        <th>Name</th>
-                        <th>Size (MB)</th>
-                        <th>Allocated (MB)</th>
-                    </tr>
-                    {% for iglobal in iglobals %}
-                    <tr>
-                        <td>{{ iglobal.database }}</td>
-                        <td>{{ iglobal.name }}</td>
-                        <td>{{ iglobal.realsize }}</td>
-                        <td>{{ iglobal.allocatedsize }}</td>
-                    </tr>
-                    {% endfor %}
+                    <thead>
+                        <tr>
+                            <th>Database</th>
+                            <th>Name</th>
+                            <th>Size (MB)</th>
+                            <th>Allocated (MB)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for iglobal in iglobals %}
+                        <tr>
+                            <td>{{ iglobal.database }}</td>
+                            <td>{{ iglobal.name }}</td>
+                            <td>{{ iglobal.realsize }}</td>
+                            <td>{{ iglobal.allocatedsize }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
 
                 <p>showing results for {{iglobals.count}} globals</p>
                 <p>total size: {{sumSize.realsize__sum}}</p>
                 <p>total allocated size: {{sumAllocated.allocatedsize__sum}}</p>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                <script src="{% static 'index.js' %}"></script>
             </section>
         </section>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
