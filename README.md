@@ -1,6 +1,8 @@
 # iris-size-django
 A portal for visualizing and keeping track of memory usage of an InterSystems IRIS instance. It shows a table with a database path, global, allocated size and size in use for each global, and aggregation sums at the end.
 
+![image](https://github.com/heloisatambara/iris-size-django/assets/81993336/57cfba5f-dbbd-4590-8c87-a1a47b285547)
+
 Django Framework was chosen to easily migrate and exchange data from the instance to a web template.
 
 Some features will have better error handling in the future.
@@ -48,7 +50,7 @@ Changing it back to SQLUser will correct the behavior in most cases, but I'm wor
 5. Press update
 6. Have fun!
 
-   ![image](https://github.com/heloisatambara/iris-size-django/assets/81993336/57cfba5f-dbbd-4590-8c87-a1a47b285547)
+   
 
 ## Usage
 With the link http://127.0.0.1:8000/ open on your preferred browser, add as many filters as you want and press Filter to activate them, choose from CSV, XML, or JSON, and press Export to get a file containing all information on the current table on the directory where you cloned the repository, and press any of the headers to order.
