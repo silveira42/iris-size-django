@@ -4,11 +4,20 @@
 import iris
 
 # connection by iris
-# TODO: make it changeable by the client side
-connection_string = 'localhost:1972/%SYS'
-username = '_system'
-password = 'SYS'
-connection = iris.connect(connection_string, username, password)
+# # TODO: make it changeable by the client side
+# connection_string = 'localhost:1972/%SYS'
+# username = '_system'
+# password = 'sys'
+# connection = iris.connect(connection_string, username, password)
+# irispy = iris.createIRIS(connection)
+
+import intersystems_iris as iris
+from django.db import connection as djangoconnection
+
+# connection by iris
+conn_params = djangoconnection.get_connection_params()
+conn_params["namespace"] = "%SYS"
+connection = iris.connect(**conn_params)
 irispy = iris.createIRIS(connection)
 
 
@@ -26,21 +35,6 @@ def getGlobalSize(databaseDirectory: str, globalName: str):
         return str(error)
 
     return (globalUsed.getValue(), globalAllocated.getValue())
-
-
-# def getGlobalAllocatedSize(databaseDirectory: str, globalName: str):
-#     try:
-#         allocatedSize = iris.IRISReference(0)
-#         status = irispy.classMethodObject("%Library.GlobalEdit", "GetGlobalSize", databaseDirectory, globalName, globalName, allocatedSize)
-#         if (status != 1):
-#             #TODO: get error text
-#             statusText = irispy.classMethodString("%SYSTEM.Status", "GetErrorText", status)
-#             raise Exception(statusText)
-
-#     except Exception as error:
-#         return str(error)
-
-#     return allocatedSize.getValue()
 
 
 def getGlobalsList(databaseDirectory: str):

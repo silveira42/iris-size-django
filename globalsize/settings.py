@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'globalsize.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_iris',
-        'NAME': 'USER',
+        'NAME': 'SAMPLE',
         'USER': '_system',
-        'PASSWORD':'SYS',
+        'PASSWORD':'sys',
         'HOST': 'localhost',
         'PORT':1972,
     }
