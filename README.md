@@ -10,7 +10,7 @@ Some features will have better error handling in the future.
 ## Instalation
 1. Clone this repository
    ```
-   git clone ...
+   git clone https://github.com/heloisatambara/iris-size-django.git
    ```
 1. Make sure you're in /iris-size-django directory on your terminal and type
    ```
