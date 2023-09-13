@@ -67,3 +67,11 @@ Feel free to contact me for any doubts!
 
  ### Credits
  The sorting algorithm was built from  https://dcode.domenade.com/tutorials/how-to-easily-sort-html-tables-with-css-and-javascript .
+
+# TODO:
+1. Add testing
+
+1. Correct for different Default Schemas
+
+1. Make the connection editable by the client size
+ 
