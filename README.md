@@ -69,9 +69,13 @@ Feel free to contact me for any doubts!
  The sorting algorithm was built from  https://dcode.domenade.com/tutorials/how-to-easily-sort-html-tables-with-css-and-javascript .
 
 # TODO:
+1. CORRECT ERROR WHEN EXPORTING!
+
 1. Add testing
 
 1. Correct for different Default Schemas
 
 1. Make the connection editable by the client size
+
+2. Make the file path editable by the client size
  
