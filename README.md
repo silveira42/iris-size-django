@@ -69,7 +69,7 @@ Feel free to contact me for any doubts!
  The sorting algorithm was built from  https://dcode.domenade.com/tutorials/how-to-easily-sort-html-tables-with-css-and-javascript .
 
 # TODO:
-1. CORRECT ERROR WHEN EXPORTING!
+1. change global name to classname when possible
 
 1. Add testing
 
@@ -77,5 +77,5 @@ Feel free to contact me for any doubts!
 
 1. Make the connection editable by the client size
 
-2. Make the file path editable by the client size
+2. Make the file path editable by the client size or display the path after exporting
  
