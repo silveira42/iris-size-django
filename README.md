@@ -1,7 +1,8 @@
 # iris-size-django
 A portal for visualizing and keeping track of memory usage of an InterSystems IRIS instance. It shows a table with a database path, global, allocated size and size in use for each global, and aggregation sums at the end.
 
-![image](https://github.com/heloisatambara/iris-size-django/assets/81993336/57cfba5f-dbbd-4590-8c87-a1a47b285547)
+![image](https://github.com/heloisatambara/iris-size-django/assets/81993336/f5d925af-e434-40f4-9a10-2d044c9e11a7)
+
 
 Django Framework was chosen to easily migrate and exchange data from the instance to a web template.
 
@@ -69,7 +70,7 @@ Feel free to contact me for any doubts!
  The sorting algorithm was built from  https://dcode.domenade.com/tutorials/how-to-easily-sort-html-tables-with-css-and-javascript .
 
 # TODO:
-1. change global name to classname when possible
+1. add filters for tablename, check if exporting works for tablename
 
 1. Add testing
 
