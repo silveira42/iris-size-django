@@ -4,6 +4,7 @@ from django.db import models
 class iGlobal(models.Model):
     database = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
+    tablename  = models.CharField(max_length=100, default="")
     allocatedsize = models.FloatField()
     realsize = models.FloatField()
 

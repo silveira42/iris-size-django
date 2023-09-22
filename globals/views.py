@@ -42,14 +42,15 @@ def home(request):
 
 def update(request):
     iGlobal.objects.all().delete()
-    databaseList = getAllDatabaseDirectories()
-
-    for database in databaseList:
-        globalList = getGlobalsList(database)
-
-        for glob in globalList:
-            used, allocated = getGlobalSize(database, glob)
-            iGlobal.objects.create(database=database, name=glob, realsize=used, allocatedsize=allocated)
+    dbReturn =  getAllDatabaseDirectories()
+    databaseList, databaseName = dbReturn[0], dbReturn[1]
+    for i in range(len(databaseList)):
+        gReturn = getGlobalsList(databaseList[i], databaseName[i])
+        globalList, tableList = gReturn[0], gReturn[1]
+        for j in range(len(globalList)):
+            sReturn= getGlobalSize(databaseList[i], globalList[j])
+            used, allocated = sReturn[0], sReturn[1]
+            iGlobal.objects.create(database=databaseList[i], name=globalList[j], tablename=tableList[j], realsize=used, allocatedsize=allocated)
 
     return redirect(home)
 
