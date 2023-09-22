@@ -49,6 +49,12 @@ a:hover{
 }
 
 
+td{
+    overflow-wrap: break-word;
+    max-width: 15rem;
+    padding: 0 .5rem;
+}
+
 .form{
     padding: 1rem;
     display: flex;
