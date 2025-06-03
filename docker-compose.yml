@@ -1,0 +1,9 @@
+name: iris-size-django
+services:
+  web:
+    build: .
+    container_name: iris-size-django
+    ports:
+      - "8000:8000"
+
+# docker compose up --build
