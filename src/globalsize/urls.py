@@ -21,4 +21,5 @@ urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('globals/', include('globals.urls')),
+    path('processes/', include('processes.urls')),
 ]

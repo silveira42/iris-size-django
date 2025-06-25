@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8e_gxt%gmxxv!y3zely%$vb=nn4ih1(p)zkw)y*!b+!@h-46jc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.15.173']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'globalsize',
     'globals',
+    'processes',
 ]
 
 MIDDLEWARE = [
@@ -78,11 +79,11 @@ WSGI_APPLICATION = 'globalsize.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_iris',
-        'NAME': 'SAMPLE',
-        'USER': '_system',
-        'PASSWORD':'sys',
-        'HOST': 'localhost',
-        'PORT':1972,
+        'NAME': 'INTEGRATION',
+        'USER': '_SYSTEM',
+        'PASSWORD': '_SYSTEM',
+        'HOST': '192.168.15.173',
+        'PORT': 1977,
     }
 }
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache" />
+    {% load static %}
+    <link rel="stylesheet" type="text/CSS" href="{% static 'styles.css' %}" media="screen">
+    <title>Process list</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>Process list</h1>
+            <a href="/globals">
+                <h3>Globals</h3>
+            </a>
+        </div>
+        <div>
+            <a href="/processes/update">Update</a>
+        </div>
+    </header>
+    <section class="content">
+        <section class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Number</th>
+                        <th>PID</th>
+                        <th>Os User Name</th>
+                        <th>Current Device</th>
+                        <th>Routine</th>
+                        <th>State</th>
+                        <th>User Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for iprocess in iprocesses %}
+                    <tr>
+                        <td>{{ iprocess.jobNumber }}</td>
+                        <td>{{ iprocess.pid }}</td>
+                        <td>{{ iprocess.osUserName }}</td>
+                        <td>{{ iprocess.currentDevice }}</td>
+                        <td>{{ iprocess.routine }}</td>
+                        <td>{{ iprocess.state }}</td>
+                        <td>{{ iprocess.userName }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>showing results for {{iprocesses.count}} processes</p>
+        </section>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'index.js'%}"></script>
+</body>
+
+</html>
