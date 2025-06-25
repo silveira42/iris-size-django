@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache" />
+    {% load static %}
+    <link rel="stylesheet" type="text/CSS" href="{% static 'styles.css' %}" media="screen">
+    <title>Globals size</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="/">
+            <h1>Global size</h1>
+        </a>
+        <a href="/globals/update">Update</a>
+    </header>
+
+    <section class="content">
+        <section class="form">
+            <form method="GET" id="form">
+                {% csrf_token %}
+                <input type="text" name="fdatabase" value="{{fdatabase}}" placeholder="Database" />
+                <input type="text" name="fglobal" value="{{fglobal}}" placeholder="Globals" />
+                <input type="number" name="fsize" value="{{fsize}}" placeholder="Size" step="0.001" />
+                <input type="number" name="fallocated" value="{{fallocated}}" placeholder="Allocated" step="0.001" />
+
+                <button type="submit" formaction="{% url 'home' %}">Filter</button>
+
+                <br>
+                <div class="filter">
+                    <input type="radio" name="exportLanguage" value="CSV" id="CSV" />
+                    <label onclick="getElementById('CSV').checked = true">CSV</label>
+                    <input type="radio" name="exportLanguage" value="XML" id="XML" />
+                    <label onclick="getElementById('XML').checked = true">XML</label>
+                    <input type="radio" name="exportLanguage" value="JSON" id="JSON" />
+                    <label onclick="getElementById('JSON').checked = true">JSON</label>
+
+                    <button type="submit" formaction="{% url 'export' %}">Export</button>
+                </div>
+                <br>
+
+            </form>
+        </section>
+        <section class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Database</th>
+                        <th>Name</th>
+                        <th>Table</th>
+                        <th>Size (MB)</th>
+                        <th>Allocated (MB)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for iglobal in iglobals %}
+                    <tr>
+                        <td>{{ iglobal.database }}</td>
+                        <td>{{ iglobal.name }}</td>
+                        <td>{{ iglobal.tablename }}</td>
+                        <td>{{ iglobal.realsize }}</td>
+                        <td>{{ iglobal.allocatedsize }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <p>showing results for {{iglobals.count}} globals</p>
+            <p>total size: {{sumSize.realsize__sum}}</p>
+            <p>total allocated size: {{sumAllocated.allocatedsize__sum}}</p>
+
+        </section>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'index.js'%}"></script>
+</body>
+
+</html>

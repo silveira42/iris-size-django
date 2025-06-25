@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache" />
+    {% load static %}
+    <link rel="stylesheet" type="text/CSS" href="{% static 'styles.css' %}" media="screen">
+    <title>Globals size</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="/globals">
+                <h2>Global Size</h2>
+            </a>
+        </div>
+        <div>
+            <a href="/admin" target="_blank"></a>
+            <h3>Admin</h3>
+            </a>
+        </div>
+    </header>
+    <section class="content">
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'index.js'%}"></script>
+</body>
+
+</html>
