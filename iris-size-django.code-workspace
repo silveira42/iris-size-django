@@ -82,26 +82,6 @@
                 }
             },
             {
-                "label": "Docker Give Permissions",
-                "type": "shell",
-                "command": "docker",
-                "args": [
-                    "exec",
-                    "-u",
-                    "0",
-                    "iris-size-django",
-                    "chown",
-                    "-R",
-                    "irisowner",
-                    "/db",
-                ],
-                "problemMatcher": [],
-                "group": {
-                    "kind": "build",
-                    "isDefault": true
-                }
-            },
-            {
                 "label": "Docker Dev Down",
                 "type": "shell",
                 "command": "docker",
@@ -124,10 +104,13 @@
                 "args": [
                     "exec",
                     "iris-size-django",
-                    "python      ",
+                    "python",
                     "manage.py",
                     "makemigrations",
                     "&&",
+                    "docker",
+                    "exec",
+                    "iris-size-django",
                     "python",
                     "manage.py",
                     "migrate",
